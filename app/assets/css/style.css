@@ -1,0 +1,7 @@
+.alert-container{
+  position: absolute;
+  z-index: 999;
+  top: 10px;
+  margin: 0 10px;
+  display: none;
+}
