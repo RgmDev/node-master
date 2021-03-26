@@ -1,3 +1,6 @@
+const bcrypt = require('bcrypt-nodejs')
+
+const jwt = require('../config/jwt')
 const User = require('../models/user')
 
 function getAll(req, res){
@@ -20,11 +23,14 @@ function getById(req, res){
 
 function create(req, res){
   let user = req.body
-  User.create(user).then((user) => {
-    res.json(user)
-  }).catch(err => {
-    console.log(err)
-    res.status(400).send(err.errors)
+  bcrypt.hash(user.password, null, null, (err, hash) => {
+    user.password = hash
+    User.create(user).then((user) => {
+      res.json(user)
+    }).catch(err => {
+      console.log(err)
+      res.status(400).send(err.errors)
+    })
   })
 }
 
@@ -57,10 +63,35 @@ function destroy(req, res){
   })
 }
 
+function login(req, res){
+  User.findOne({where : { email: req.body.email }}).then(user => {
+    if(user){
+      bcrypt.compare(req.body.password, user.password, (err, check) => {
+        if(check){
+          res.status(200).send({ token: jwt.createToken(user), user: { id: user.id, email: user.email, name: user.name, surname: user.surname, role: user.role, image: user.image } })
+        }else{
+          res.send({error: true, message: 'Unauthorized'})
+        }
+      })
+    }else{
+      res.send({error: true, message: 'Unauthorized'})
+    }
+  }).catch(err => {
+    console.log(err)
+    res.status(400).send(err.errors)
+  })
+}
+
+function decodeToken(req, res){
+  res.send( jwt.decodeToken(req.body.token) )
+}
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
-  destroy
+  destroy,
+  login,
+  decodeToken
 }

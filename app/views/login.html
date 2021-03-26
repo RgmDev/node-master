@@ -12,23 +12,30 @@
     <link href="/css/bootswatch.min.css" type="text/css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
 
   </head>
     
   <body class="text-center">
+    
+    <div id="alert-danger" class="alert-container">
+      <div class="alert alert-dismissible alert-danger">
+        <strong>Bad login!</strong>
+      </div>
+    </div>
         
     <main class="form-signin">
-      <form>
+
+      <form onSubmit="login(); return false;">
         <img class="mb-4" src="/img/nodejs-icon.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
         <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com">
+          <label for="email">Email address</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-          <label for="floatingPassword">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+          <label for="password">Password</label>
         </div>
         <div class="checkbox mb-3">
           <label>
@@ -40,7 +47,10 @@
         <a href="/"><button type="button" class="btn btn-link">Back to landing</button></a>
         <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
       </form>
+
     </main>
 
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/users.js"></script>
   </body>
 </html>

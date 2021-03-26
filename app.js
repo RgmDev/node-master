@@ -62,7 +62,7 @@ app.listen(port, () => {
   })
 
   // Sync database
-  sequelize.sync({force: true}).then(() =>{
+  sequelize.sync({force: false}).then(() =>{
     console.log('Synchronized with the database correctly')
   }).catch(()=>{
     console.log('Failed to sync to database')
