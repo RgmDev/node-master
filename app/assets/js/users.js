@@ -1,6 +1,5 @@
 /* Login */
 function register(){
-
   let user = JSON.stringify({
     name: $("#name").val(),
     surname: $("#surname").val(),
@@ -26,11 +25,9 @@ function register(){
     .fail( function(jqXHR, textStatus, errorThrown){
       console.log(errorThrown)
     })   
-
 }
 
 function login(){
-
   let data = JSON.stringify({
     email: $("#email").val(),
     password: $("#password").val()
@@ -50,9 +47,8 @@ function login(){
         setInterval(function(){ $("#alert-danger").fadeOut() }, 3000)
       }else{
         saveUserAndToken(response.user, response.token)
-        location.href = '/sandbox'
+        location.href = '/app/home'
       }
-      
     })
     .fail( function(jqXHR, textStatus, errorThrown){
       console.log(errorThrown)
