@@ -33,7 +33,7 @@ function login(){
     password: $("#password").val()
   })
   var settings = {
-    "url": "/api/users/login",
+    "url": "/auth/login",
     "method": "POST",
     "headers": {
       "Content-Type": "application/json"
@@ -46,7 +46,7 @@ function login(){
         $("#alert-danger").fadeIn()
         setInterval(function(){ $("#alert-danger").fadeOut() }, 3000)
       }else{
-        saveUserAndToken(response.user, response.token)
+        saveToken(response.token)
         location.href = '/app/home'
       }
     })
@@ -56,8 +56,6 @@ function login(){
 }
 
 /* Local storage */
-function saveUserAndToken(user, token){
-  console.log(JSON.stringify(user))
-  localStorage.setItem('user', JSON.stringify(user))
+function saveToken(token){
   localStorage.setItem('token', token)
 }

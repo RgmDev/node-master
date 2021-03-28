@@ -2,64 +2,19 @@
 
 <div class="row mt-5">
 
-  {{cards}}
-
-
-  <div class="card text-white bg-dark" style="max-width: 20rem; margin: 15px auto; ">
-    <div class="card-header"><em>npm i express</em></div>
-    <div class="card-body">
-      <h4 class="card-title">Express</h4>
-      <p class="card-text">Fast, unopinionated, minimalist web framework for Node.js</p>
-      <p>
-        <a class="btn btn-primary" href="https://npmjs.com/package/express" target="_blank">npm</a>
-        <a class="btn btn-primary" href="https://expressjs.com/" target="_blank">Official website</a>
-      </p>
+  {{#cards}}
+    <div class="card text-white {{style}}" style="max-width: 20rem; margin: 15px auto; ">
+      <div class="card-header"><em>{{command}}</em></div>
+      <div class="card-body">
+        <h4 class="card-title">{{title}}</h4>
+        <p class="card-text">{{description}}</p>
+        <a class="btn btn-primary" href="{{npmLink}}" target="_blank">npm</a>
+        {{#websiteLink}}
+        <a class="btn btn-primary" href="{{websiteLink}}" target="_blank">Official website</a>
+        {{/websiteLink}}
+      </div>
     </div>
-  </div>
-
-  <div class="card text-white bg-info" style="max-width: 20rem; margin: 15px auto; ">
-    <div class="card-header"><em>npm i express</em></div>
-    <div class="card-body">
-      <h4 class="card-title">Express</h4>
-      <p class="card-text">Fast, unopinionated, minimalist web framework for Node.js</p>
-      <p>
-        <a class="btn btn-primary" href="https://npmjs.com/package/express" target="_blank">npm</a>
-        <a class="btn btn-primary" href="https://expressjs.com/" target="_blank">Official website</a>
-      </p>
-    </div>
-  </div>
-
-  <div class="card text-white bg-info" style="max-width: 20rem; margin: 15px auto; ">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h4 class="card-title">Primary card title</h4>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-  </div>
-
-  <div class="card text-white bg-primary" style="max-width: 20rem; margin: 15px auto;">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h4 class="card-title">Primary card title</h4>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-  </div>
-
-  <div class="card text-white bg-primary" style="max-width: 20rem; margin: 15px auto; ">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h4 class="card-title">Primary card title</h4>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-  </div>
-
-  <div class="card text-white bg-primary" style="max-width: 20rem; margin: 15px auto; ">
-    <div class="card-header">Header</div>
-    <div class="card-body">
-      <h4 class="card-title">Primary card title</h4>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    </div>
-  </div>
+  {{/cards}}
 
   <div class="card text-white bg-primary" style="max-width: 20rem; margin: 15px auto;">
     <div class="card-header">Header</div>

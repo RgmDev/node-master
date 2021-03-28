@@ -83,17 +83,24 @@ function login(req, res){
   })
 }
 
-function decodeToken(req, res){
-  res.send( jwt.decodeToken(req.body.token) )
-}
-
 function checkToken(req, res){
   try{
     payload = jwt.decodeToken(req.body.token)
     if(payload.exp <= moment().unix()){
       return res.status(401).send({error: true, message: 'Expired token'})
     }
-    return res.status(200).send({error: false, message: 'Valid token'})
+    return res.status(200).send({
+      error: false, 
+      message: 'Valid token', 
+      user: { 
+        id: payload.id, 
+        email: payload.email, 
+        name: payload.name, 
+        surname: payload.surname, 
+        role: payload.role, 
+        image: payload.image 
+      }
+    })
   }catch(ex){
     console.log(ex)
     return res.status(404).send({error: true, message: 'Invalid token'})
@@ -107,6 +114,5 @@ module.exports = {
   update,
   destroy,
   login,
-  decodeToken,
   checkToken
 }

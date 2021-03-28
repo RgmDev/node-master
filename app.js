@@ -4,9 +4,8 @@ const path = require('path')
 const mustacheExpress = require('mustache-express')
 
 const sequelize = require('./app/config/db')
-const User = require('./app/models/user')
 
-const appRoutes = require('./app/controllers/app-routes')
+const usersController = require('./app/controllers/users')
 
 const app = express()
 const port = 3000
@@ -33,18 +32,17 @@ app.use('/css', express.static(path.join(__dirname, 'app/assets/css')))
 app.use('/js', express.static(path.join(__dirname, 'app/assets/js')))
 app.use('/img', express.static(path.join(__dirname, 'app/assets/img')))
 
-
 let md_auth = require(path.join(__dirname, 'app/middleware/authenticate'))
 
 app.get('/', (req, res) => { res.render('landing', {name: "rugo"}) })
 app.get('/login', (req, res) => { res.render('login', {}) })
 app.get('/register', (req, res) => { res.render('register', {}) })
+app.post('/auth/login', usersController.login)
 
-app.get('/app/home', md_auth.ensureUrl, appRoutes.home)
-
+const appRoutes = require(path.join(__dirname, 'app/routes/app-routes'))
+app.use('/app', appRoutes)
 
 const usersRoutes = require(path.join(__dirname, 'app/routes/users'))
-
 app.use('/api', usersRoutes)
 
 

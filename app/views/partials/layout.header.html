@@ -7,8 +7,9 @@
     <meta name="author" content="rugo">
     <title>{{title}}</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootswatch.min.css" type="text/css" rel="stylesheet">
+    {{#css}}
+    <link href="{{{.}}}" type="text/css" rel="stylesheet">
+    {{/css}}
 
   </head>
   <body>
@@ -51,6 +52,6 @@
       </div>
     </nav>
 
-    {{css}}
+
 
     <main class="container">     
