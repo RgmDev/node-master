@@ -85,7 +85,10 @@ function login(req, res){
 
 function checkToken(req, res){
   try{
-    payload = jwt.decodeToken(req.body.token)
+    if(!req.headers.authorization){
+      return res.status(403).send({message: 'Authorization header not found'})
+    }
+    payload = jwt.decodeToken(req.headers.authorization)
     if(payload.exp <= moment().unix()){
       return res.status(401).send({error: true, message: 'Expired token'})
     }

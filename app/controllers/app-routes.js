@@ -1,7 +1,10 @@
 function home(req, res){
   res.render('home', {
     title: 'Home', 
-    css: ['/css/bootswatch.min.css'],
+    css: [
+      '/css/bootswatch.min.css', 
+      '/css/style.css'
+    ],
     scripts: [
         '/js/jquery.min.js', 
         '/js/bootstrap.bundle.min.js', 

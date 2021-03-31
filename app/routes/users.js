@@ -10,6 +10,6 @@ app.get('/users/:id', md_auth.ensureAuth, usersController.getById)
 app.post('/users', usersController.create)
 app.put('/users/:id', md_auth.ensureAuth, usersController.update)
 app.delete('/users/:id', md_auth.ensureAuth, usersController.destroy)
-app.post('/users/checkToken', usersController.checkToken)
+app.get('/checkToken', usersController.checkToken)
 
 module.exports = app

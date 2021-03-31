@@ -1,7 +1,17 @@
+/* alert */
 .alert-container{
   position: absolute;
   z-index: 999;
   top: 10px;
   margin: 0 10px;
   display: none;
+}
+
+/* navbar */
+.no-arrow .dropdown-toggle::after{
+  display:none
+}
+
+.img-profile{
+  height:2rem;width:2rem
 }
