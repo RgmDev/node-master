@@ -11,5 +11,7 @@ app.post('/users', usersController.create)
 app.put('/users/:id', md_auth.ensureAuth, usersController.update)
 app.delete('/users/:id', md_auth.ensureAuth, usersController.destroy)
 app.get('/checkToken', usersController.checkToken)
+app.post('/uploadAvatar', usersController.uploadAvatar)
+
 
 module.exports = app

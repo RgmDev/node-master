@@ -1,5 +1,6 @@
 $(document).ready(function(){
   checkToken();
+  linkActive()
 })
 
 /* User */
@@ -28,14 +29,18 @@ function checkToken(){
 
 function loadUserInfo(user){
   $("span#userEmail").html(user.email)
-  console.log(user)
-  console.log(user.image)
   if(user.image){
-    $("img#userImage").attr("src", "/img/profile/ruben-2.png")
+    $("img#userImage").attr("src", "/img/profile/"+user.image)
   }
 }
 
 function logOut(){
   localStorage.clear()
   location.href = "/login"
+}
+
+function linkActive(){
+  let url = location.href.replace(/^.*\/\/[^\/]+/, '')
+  $("a.nav-link").removeClass('active')
+  $("a.nav-link[href$='"+url+"']").addClass('active')
 }

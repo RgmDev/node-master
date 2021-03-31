@@ -3,10 +3,6 @@ const bodyParser = require('body-parser')
 const path = require('path')
 const mustacheExpress = require('mustache-express')
 
-// https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer/
-// https://medium.com/@SigniorGratiano/image-uploads-with-multer-f306469ef2
-var multer  = require('multer')
-
 const sequelize = require('./app/config/db')
 
 const usersController = require('./app/controllers/users')
@@ -48,68 +44,6 @@ app.use('/app', appRoutes)
 
 const usersRoutes = require(path.join(__dirname, 'app/routes/users'))
 app.use('/api', usersRoutes)
-
-
-
-app.post('/profile', function (req, res) {
-
-  var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, __dirname+'/app/uploads/')
-    },
-    filename: function (req, file, cb) {  
-      cb(null, file.fieldname + '-' + path.extname(file.originalname))
-    }
-  })
-  var upload = multer({ storage: storage }).single('avatar')
-
-  upload(req, res, function(err){
-
-    console.log(req.body)
-    console.log(req.file)
-
-    if (req.fileValidationError) {
-        return res.send(req.fileValidationError);
-    }
-    else if (!req.file) {
-        return res.send('Please select an image to upload');
-    }
-    else if (err instanceof multer.MulterError) {
-        return res.send(err);
-    }
-    else if (err) {
-        return res.send(err);
-    }
-
-    // Display uploaded image for user validation
-    res.status(200).send('subida')
-    
-  })
-  
-
-})
-
-
-app.get('/sandbox', (req, res) => {
-  res.render('sandbox', {
-    title: 'sandbox', 
-    css: ['/css/bootswatch.min.css'],
-    scripts: [
-        '/js/jquery.min.js', 
-        '/js/bootstrap.bundle.min.js',
-        'https://cdn.amcharts.com/lib/4/core.js',
-        'https://cdn.amcharts.com/lib/4/charts.js',
-        'https://cdn.amcharts.com/lib/4/plugins/timeline.js',
-        'https://cdn.amcharts.com/lib/4/plugins/bullets.js',
-        'https://cdn.amcharts.com/lib/4/themes/animated.js',
-        'https://cdn.amcharts.com/lib/4/themes/dark.js'
-      ]
-    })
-})
-
-app.get('/partials', (req, res) => {
-  res.render('partials-demo', {})
-})
 
 app.listen(port, () => {
   

@@ -1,92 +1,115 @@
 const bcrypt = require('bcrypt-nodejs')
 const moment = require('moment')
+const path = require('path')
+
+// https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer/
+// https://medium.com/@SigniorGratiano/image-uploads-with-multer-f306469ef2
+const multer  = require('multer')
 
 const jwt = require('../config/jwt')
 const User = require('../models/user')
 
 function getAll(req, res){
-  User.findAll({where: req.body}).then(users => {
-    res.json(users)
-  }).catch(err => {
-    console.log(err)
-    res.status(400).send({errors: err.errors})
-  })
+  try{
+    User.findAll({where: req.body}).then(users => {
+      res.json(users)
+    }).catch(err => {
+      res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+    })
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
+  }
+  
 }
 
 function getById(req, res){
-  User.findByPk(req.params.id).then(user => {
-    res.json(user)
-  }).catch(err => {
-    console.log(err)
-    res.status(400).send(err.errors)
-  })
+  try{
+    User.findByPk(req.params.id).then(user => {
+      res.json(user)
+    }).catch(err => {
+      res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+    })
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
+  }
 }
 
 function create(req, res){
-  let user = req.body
-  bcrypt.hash(user.password, null, null, (err, hash) => {
-    user.password = hash
-    User.create(user).then((user) => {
-      res.json(user)
-    }).catch(err => {
-      console.log(err)
-      res.status(400).send(err.errors)
+  try{
+    let user = req.body
+    bcrypt.hash(user.password, null, null, (err, hash) => {
+      user.password = hash
+      User.create(user).then((user) => {
+        res.json(user)
+      }).catch(err => {
+        res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+      })
     })
-  })
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
+  }
 }
 
 function update(req, res){
-  User.findByPk(req.params.id).then(user => {
-    User.update(req.body, { where: { id: user.id }}).then(() => {
-      res.status(400).send(user)
+  try{
+    User.findByPk(req.params.id).then(user => {
+      User.update(req.body, { where: { id: user.id }}).then(() => {
+        res.status(400).send(user)
+      }).catch(err => {
+        res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+      })  
     }).catch(err => {
-      console.log(err)
-      res.status(400).send(err.errors)
-    })  
-  }).catch(err => {
-    console.log(err)
-    res.status(400).send(err.errors)
-  })
+      res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+    })
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
+  }
 }
 
 function destroy(req, res){
-  User.findByPk(req.params.id).then(user => {
-    let id = user ? user.id : 0;
-    User.destroy({ where: { id: user.id }}).then(() => {
-      res.json(user)
+  try{
+    User.findByPk(req.params.id).then(user => {
+      let id = user ? user.id : 0;
+      User.destroy({ where: { id: user.id }}).then(() => {
+        res.json(user)
+      }).catch(err => {
+        res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+      })    
     }).catch(err => {
-      console.log(err)
-      res.status(400).send(err.errors)
-    })    
-  }).catch(err => {
-    console.log(err)
-    res.status(400).send(err.errors)
-  })
+      res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+    })
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
+  }
 }
 
 function login(req, res){
-  User.findOne({where : { email: req.body.email }}).then(user => {
-    if(user){
-      bcrypt.compare(req.body.password, user.password, (err, check) => {
-        if(check){
-          res.status(200).send({ token: jwt.createToken(user), user: { id: user.id, email: user.email, name: user.name, surname: user.surname, role: user.role, image: user.image } })
-        }else{
-          res.send({error: true, message: 'Unauthorized'})
-        }
-      })
-    }else{
-      res.send({error: true, message: 'Unauthorized'})
-    }
-  }).catch(err => {
-    console.log(err)
-    res.status(400).send(err.errors)
-  })
+  try{
+    User.findOne({where : { email: req.body.email }}).then(user => {
+      if(user){
+        bcrypt.compare(req.body.password, user.password, (err, check) => {
+          if(check){
+
+            res.status(200).send({ token: jwt.createToken(user), user: { id: user.id, email: user.email, name: user.name, surname: user.surname, role: user.role, image: user.image } })
+          }else{
+            res.send({error: true, message: 'Unauthorized'})
+          }
+        })
+      }else{
+        res.send({error: true, message: 'Unauthorized'})
+      }
+    }).catch(err => {
+      res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
+    })
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
+  }
 }
 
 function checkToken(req, res){
   try{
     if(!req.headers.authorization){
-      return res.status(403).send({message: 'Authorization header not found'})
+      return res.status(403).send({error: true, message: 'Authorization header not found'})
     }
     payload = jwt.decodeToken(req.headers.authorization)
     if(payload.exp <= moment().unix()){
@@ -104,10 +127,37 @@ function checkToken(req, res){
         image: payload.image 
       }
     })
-  }catch(ex){
-    console.log(ex)
-    return res.status(404).send({error: true, message: 'Invalid token'})
+  }catch(err){
+    res.status(500).send({error: true, message: 'Interval Server Error'})
   }
+  
+}
+
+function uploadAvatar(req, res){
+  var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, path.join(__dirname, '../assets/img/profile/'))
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now()+'_'+Math.floor(Math.random() * 10000)+path.extname(file.originalname))
+    }
+  })
+  var upload = multer({ storage: storage }).single('avatar')
+  upload(req, res, function(err){
+    if (req.fileValidationError) {
+      return res.status(500).send({error: true, message: 'Internal Server Error', data: req.fileValidationError})
+    }
+    else if (!req.file) {
+      return res.status(400).send({error: true, message: 'Bad Request'})
+    }
+    else if (err instanceof multer.MulterError) {
+      return res.status(500).send({error: true, message: 'Internal Server Error', data: err})
+    }
+    else if (err) {
+      return res.status(500).send({error: true, message: 'Internal Server Error', data: err})
+    }
+    res.status(200).send({error: false, data: path.basename(req.file.path)})
+  })
 }
 
 module.exports = {
@@ -117,5 +167,6 @@ module.exports = {
   update,
   destroy,
   login,
-  checkToken
+  checkToken,
+  uploadAvatar
 }
