@@ -502,7 +502,6 @@ $(document).ready(function(){
                 country = 'es';
                 break;
             }
-            // return '<span class="flag ' + country + '"></span> ' + data;
             return '<span class="flag '+country+'"></span> <span>'+data+'</span>';
           }
           return data;
@@ -511,16 +510,9 @@ $(document).ready(function(){
       {
         data: 'extn',
         render: function(data, type, row, meta) {
-
-
-            return type === 'display' ?
+          return type === 'display' ?
             '<div class="progress"><div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: '+Math.round((data/9999)*100)+'%;" aria-valuenow="'+Math.round((data/9999)*100)+'" aria-valuemin="0" aria-valuemax="100"></div></div>' :
             data;
-          /*
-          return type === 'display' ?
-            '<progress value="' + data + '" max="9999"></progress>' :
-            data;
-          */
         }
       },
       { data: "start_date" },
@@ -529,5 +521,6 @@ $(document).ready(function(){
         render: $.fn.dataTable.render.number( ',', '.', 2, '$' )
       }
     ]
-});
+  });
+  
 })
