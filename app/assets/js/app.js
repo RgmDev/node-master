@@ -1,31 +1,46 @@
 $(document).ready(function(){
   checkToken();
+  linkActive()
 })
 
-/* Token */
-function getToken(){
-  return localStorage.getItem('token')
-}
+/* User */
 function checkToken(){
-  let token = getToken()
+  let token = localStorage.getItem('token')
   let data = JSON.stringify({
     token: token
   })
   var settings = {
-    "url": "/api/users/checkToken",
-    "method": "POST",
+    "url": "/api/checkToken",
+    "method": "GET",
     "headers": {
-      "Content-Type": "application/json"
-    },
-    "data" : data
+      "Content-Type": "application/json",
+      "Authorization": token
+    }
   };
   $.ajax(settings)
     .done(function (response) { 
-      // for load datat user
-      console.log(response)
+      loadUserInfo(response.user)
     })
     .fail( function(jqXHR, textStatus, errorThrown){
       location.href = "/login"
     })
 
+}
+
+function loadUserInfo(user){
+  $("span#userEmail").html(user.email)
+  if(user.image){
+    $("img#userImage").attr("src", "/img/profile/"+user.image)
+  }
+}
+
+function logOut(){
+  localStorage.clear()
+  location.href = "/login"
+}
+
+function linkActive(){
+  let url = location.href.replace(/^.*\/\/[^\/]+/, '')
+  $("a.nav-link").removeClass('active')
+  $("a.nav-link[href$='"+url+"']").addClass('active')
 }

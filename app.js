@@ -45,15 +45,6 @@ app.use('/app', appRoutes)
 const usersRoutes = require(path.join(__dirname, 'app/routes/users'))
 app.use('/api', usersRoutes)
 
-
-app.get('/sandbox', (req, res) => {
-  res.render('sandbox', {})
-})
-
-app.get('/partials', (req, res) => {
-  res.render('partials-demo', {})
-})
-
 app.listen(port, () => {
   
   console.log(`Example app listening at http://localhost:${port}`)
