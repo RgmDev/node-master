@@ -2,12 +2,12 @@ function home(req, res){
   res.render('home', {
     title: 'Home', 
     css: [
-      '/css/bootswatch.min.css', 
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css', 
       '/css/style.css'
     ],
     scripts: [
-      '/js/jquery.min.js', 
-      '/js/bootstrap.bundle.min.js', 
+      'https://code.jquery.com/jquery-3.6.0.min.js', 
+      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', 
       '/js/app.js' 
     ],
     cards : [{
@@ -86,12 +86,18 @@ function textillate(req, res){
   res.render('textillate', {
     title: 'Textillate', 
     css: [
-      '/css/bootswatch.min.css',
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+      'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css',
       '/css/style.css'
     ],
     scripts: [
-      '/js/jquery.min.js', 
-      '/js/bootstrap.bundle.min.js', 
+      'https://code.jquery.com/jquery-3.6.0.min.js', 
+      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js', 
+      'https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js', 
+      '/js/text-effects.js',
       '/js/app.js' 
     ]
   })
@@ -101,14 +107,14 @@ function datatable(req, res){
   res.render('datatable', {
     title: 'Datatable', 
     css: [
-      '/css/bootswatch.min.css', 
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css', 
       'https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css',
       'https://github.com/downloads/lafeber/world-flags-sprite/flags32.css',
       '/css/style.css'
     ],
     scripts: [
-      '/js/jquery.min.js', 
-      '/js/bootstrap.bundle.min.js', 
+      'https://code.jquery.com/jquery-3.6.0.min.js', 
+      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', 
       'https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js',
       '/js/datatable.js',
       '/js/app.js' 
@@ -120,12 +126,12 @@ function amcharts(req, res){
   res.render('amcharts', {
     title: 'amcharts', 
     css: [
-      '/css/bootswatch.min.css', 
+      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css', 
       '/css/style.css'
     ],
     scripts: [
-      '/js/jquery.min.js', 
-      '/js/bootstrap.bundle.min.js',
+      'https://code.jquery.com/jquery-3.6.0.min.js', 
+      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js',
       'https://cdn.amcharts.com/lib/4/core.js',
       'https://cdn.amcharts.com/lib/4/charts.js',
       'https://cdn.amcharts.com/lib/4/plugins/timeline.js',

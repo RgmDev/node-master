@@ -45,6 +45,39 @@ app.use('/app', appRoutes)
 const usersRoutes = require(path.join(__dirname, 'app/routes/users'))
 app.use('/api', usersRoutes)
 
+
+
+
+app.get('/sandbox', (req, res) => { 
+  res.render('sandbox', {
+  title: 'sandbox', 
+  css: [
+    '/css/bootswatch.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css',
+    'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+    '/css/style.css'
+  ],
+  scripts: [
+    '/js/jquery.min.js', 
+    '/js/bootstrap.bundle.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js', 
+    'https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js', 
+    '/js/sandbox.js', 
+    '/js/app.js' 
+  ]
+  }) 
+})
+
+
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
   
   console.log('Example app listening at http://localhost:'+port)
