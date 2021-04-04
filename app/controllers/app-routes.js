@@ -142,14 +142,14 @@ function amcharts(req, res){
     scripts: [
       cdn.js.jquery, 
       cdn.js.bootstrap.bundle,
+      '/js/app.js',
       cdn.js.amcharts.core,
       cdn.js.amcharts.charts,
       cdn.js.amcharts.timeline,
       cdn.js.amcharts.bullets,
       cdn.js.amcharts.animated,
       cdn.js.amcharts.theme.dark,
-      '/js/amcharts.js',
-      '/js/app.js'
+      '/js/amcharts.js'
     ]
   })
 }

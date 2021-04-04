@@ -1,11 +1,12 @@
+require('dotenv').config()
 const bcrypt = require('bcrypt-nodejs')
 const moment = require('moment')
 const path = require('path')
-
 // https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer/
 // https://medium.com/@SigniorGratiano/image-uploads-with-multer-f306469ef2
 const multer  = require('multer')
 
+const mailer = require('../config/mail')
 const jwt = require('../config/jwt')
 const User = require('../models/user')
 
@@ -37,9 +38,12 @@ function getById(req, res){
 function create(req, res){
   try{
     let user = req.body
+    let pass = user.password
     bcrypt.hash(user.password, null, null, (err, hash) => {
       user.password = hash
       User.create(user).then((user) => {
+        let mailData = {email: user.email, password: pass, timestamp: new Date().toLocaleString('es')}
+        mailer.useTemplate(process.env.ADMIN_MAIL, 'New user account', mailData, 'newUser')
         res.json(user)
       }).catch(err => {
         res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
