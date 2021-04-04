@@ -1,38 +1,15 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="node-master">
-    <meta name="author" content="rugo">
-    <title>node-master</title>
+{{>partials/layout.header}}
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css" type="text/css" rel="stylesheet">
+<div class="jumbotron mt-5">
+  <h1 class="display-3">Hello, {{ name }}!</h1>
+  <p class="lead">The authentic node boilerplate for web projects and APIs.</p>
+  <hr class="my-4">
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="/login" role="button">App</a>
+  </p>
+  <a href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/" target="_blank"><button type="button" class="btn btn-link">Bootstrap cheatsheet</button></a>
+  <a href="https://bootswatch.com/cyborg/" target="_blank"><button type="button" class="btn btn-link">Bootswatch Cyborg</button></a>
+  <a href="https://www.amcharts.com/" target="_blank"><button type="button" class="btn btn-link">Amcharts</button></a>
+</div>
 
-  </head>
-  <body>
-
-    <main class="container">
-
-      <div class="jumbotron mt-5">
-        <h1 class="display-3">Hello, {{ name }}!</h1>
-        <p class="lead">The authentic node boilerplate for web projects and APIs.</p>
-        <hr class="my-4">
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="/login" role="button">App</a>
-        </p>
-        <a href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/" target="_blank"><button type="button" class="btn btn-link">Bootstrap cheatsheet</button></a>
-        <a href="https://bootswatch.com/cyborg/" target="_blank"><button type="button" class="btn btn-link">Bootswatch Cyborg</button></a>
-        <a href="https://www.amcharts.com/" target="_blank"><button type="button" class="btn btn-link">Amcharts</button></a>
-        
-        
-      </div>
-
-  
-    </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
-
+{{>partials/layout.footer}}

@@ -1,13 +1,17 @@
+const cdn = require('../config/cdn')
+
 function home(req, res){
   res.render('home', {
     title: 'Home', 
+    nav: true,
+    mainClass: 'container mt-5 pt-3',
     css: [
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css', 
+      cdn.css.bootswatch.cyborg, 
       '/css/style.css'
     ],
     scripts: [
-      'https://code.jquery.com/jquery-3.6.0.min.js', 
-      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', 
+      cdn.js.jquery, 
+      cdn.js.bootstrap.bundle, 
       '/js/app.js' 
     ],
     cards : [{
@@ -85,18 +89,20 @@ function home(req, res){
 function textillate(req, res){
   res.render('textillate', {
     title: 'Textillate', 
+    nav: true,
+    mainClass: 'container mt-5 pt-3',
     css: [
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css',
-      'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css',
-      'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
-      'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css',
+      cdn.css.bootswatch.cyborg, 
+      cdn.css.animate.textillate,
+      cdn.css.animate.default,
+      cdn.css.bootstrap.icons,
       '/css/style.css'
     ],
     scripts: [
-      'https://code.jquery.com/jquery-3.6.0.min.js', 
-      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js', 
-      'https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js', 
+      cdn.js.jquery,  
+      cdn.js.bootstrap.bundle,
+      cdn.js.lettering, 
+      cdn.js.textillate, 
       '/js/text-effects.js',
       '/js/app.js' 
     ]
@@ -106,16 +112,18 @@ function textillate(req, res){
 function datatable(req, res){
   res.render('datatable', {
     title: 'Datatable', 
+    nav: true,
+    mainClass: 'container mt-5 pt-3',
     css: [
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css', 
-      'https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css',
-      'https://github.com/downloads/lafeber/world-flags-sprite/flags32.css',
+      cdn.css.bootswatch.cyborg, 
+      cdn.css.datatable,
+      cdn.css.worldFlagsSprite,
       '/css/style.css'
     ],
     scripts: [
-      'https://code.jquery.com/jquery-3.6.0.min.js', 
-      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js', 
-      'https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js',
+      cdn.js.jquery,  
+      cdn.js.bootstrap.bundle, 
+      cdn.js.datatable,
       '/js/datatable.js',
       '/js/app.js' 
     ]
@@ -125,19 +133,21 @@ function datatable(req, res){
 function amcharts(req, res){
   res.render('amcharts', {
     title: 'amcharts', 
+    nav: true,
+    mainClass: 'container mt-5 pt-3',
     css: [
-      'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css', 
+      cdn.css.bootswatch.cyborg, 
       '/css/style.css'
     ],
     scripts: [
-      'https://code.jquery.com/jquery-3.6.0.min.js', 
-      'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js',
-      'https://cdn.amcharts.com/lib/4/core.js',
-      'https://cdn.amcharts.com/lib/4/charts.js',
-      'https://cdn.amcharts.com/lib/4/plugins/timeline.js',
-      'https://cdn.amcharts.com/lib/4/plugins/bullets.js',
-      'https://cdn.amcharts.com/lib/4/themes/animated.js',
-      'https://cdn.amcharts.com/lib/4/themes/dark.js',
+      cdn.js.jquery, 
+      cdn.js.bootstrap.bundle,
+      cdn.js.amcharts.core,
+      cdn.js.amcharts.charts,
+      cdn.js.amcharts.timeline,
+      cdn.js.amcharts.bullets,
+      cdn.js.amcharts.animated,
+      cdn.js.amcharts.theme.dark,
       '/js/amcharts.js',
       '/js/app.js'
     ]
