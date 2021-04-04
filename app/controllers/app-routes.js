@@ -86,7 +86,7 @@ function home(req, res){
   })
 }
 
-function textillate(req, res){
+function textEffects(req, res){
   res.render('textillate', {
     title: 'Textillate', 
     nav: true,
@@ -176,7 +176,7 @@ function lightbox(req, res){
 
 module.exports = {
   home,
-  textillate,
+  textEffects,
   datatable,
   amcharts,
   lightbox
