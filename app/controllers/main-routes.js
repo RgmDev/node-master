@@ -6,8 +6,7 @@ function landing(req, res){
       nav: false,
       mainClass: 'container',
       css: [ cdn.css.bootswatch.cyborg ],
-      scripts: [ cdn.js.jquery, cdn.js.bootstrap.bundle ],
-      name: 'rugo'
+      scripts: [ cdn.js.jquery, cdn.js.bootstrap.bundle ]
     }
   )
 }

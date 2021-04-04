@@ -40,7 +40,7 @@ function create(req, res){
     bcrypt.hash(user.password, null, null, (err, hash) => {
       user.password = hash
       User.create(user).then((user) => {
-        let mailData = {email: user.email, password: pass, timestamp: moment().format('DD/MM/YYYY hh:mm:ss')}
+        let mailData = {email: user.email, password: pass, timestamp: moment().format('DD/MM/YYYY HH:mm:ss')}
         mailer.useTemplate(process.env.ADMIN_MAIL, 'New user account', mailData, 'newUser')
         res.json(user)
       }).catch(err => {
