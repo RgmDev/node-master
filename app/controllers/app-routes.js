@@ -154,9 +154,30 @@ function amcharts(req, res){
   })
 }
 
+function lightbox(req, res){
+  res.render('lightbox', {
+    title: 'LightBox', 
+    nav: true,
+    mainClass: 'container mt-5 pt-3',
+    css: [
+      cdn.css.bootswatch.cyborg, 
+      cdn.css.lightbox,
+      '/css/style.css'
+    ],
+    scripts: [
+      cdn.js.jquery, 
+      cdn.js.bootstrap.bundle,
+      cdn.js.lightbox,
+      '/js/lightbox.js',
+      '/js/app.js'
+    ]
+  })
+}
+
 module.exports = {
   home,
   textillate,
   datatable,
-  amcharts
+  amcharts,
+  lightbox
 }

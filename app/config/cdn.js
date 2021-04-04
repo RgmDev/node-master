@@ -13,7 +13,8 @@ const cdn = {
       default: 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css'
     },
     datatable: 'https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css',
-    worldFlagsSprite: 'https://github.com/downloads/lafeber/world-flags-sprite/flags32.css'
+    worldFlagsSprite: 'https://github.com/downloads/lafeber/world-flags-sprite/flags32.css',
+    lightbox: 'https://cdn.jsdelivr.net/npm/simplelightbox@2.7.0/dist/simple-lightbox.min.css'
   },
   js: {
     jquery: 'https://code.jquery.com/jquery-3.6.0.min.js',
@@ -32,7 +33,8 @@ const cdn = {
       theme: {
         dark: 'https://cdn.amcharts.com/lib/4/themes/dark.js'
       }
-    }
+    },
+    lightbox: 'https://cdn.jsdelivr.net/npm/simplelightbox@2.7.0/dist/simple-lightbox.min.js'
   }
 }
 

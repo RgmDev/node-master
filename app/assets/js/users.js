@@ -14,16 +14,11 @@ function login(){
   };
   $.ajax(settings)
     .done(function (response) { 
-      if(response.error){
-        $("#alert-danger").fadeIn()
-        setInterval(function(){ $("#alert-danger").fadeOut() }, 3000)
-      }else{
-        saveToken(response.token)
-        location.href = '/app/home'
-      }
+      saveToken(response.token)
+      location.href = '/app/home'
     })
     .fail( function(jqXHR, textStatus, errorThrown){
-      console.log(errorThrown)
+      showAlert('alert-danger', 3000, '<strong>'+errorThrown+'</strong>')
     })
 }
 
@@ -73,14 +68,20 @@ function createUser(param){
   $.ajax(settings)
     .done(function (response) { 
       $("#formSingUp").trigger("reset")
-      $("#alert-success").fadeIn()
-      setInterval(function(){ $("#alert-success").fadeOut() }, 3000)
+      showAlert('alert-success', 6000, '<strong>User created successfully</strong> To access the app <a href="/login" class="alert-link">Go to login</a>.')
     })
     .fail( function(jqXHR, textStatus, errorThrown){
-      console.log(errorThrown)
+      if(jqXHR.responseJSON.data){
+        if(jqXHR.responseJSON.data.find(error => error.message === "users.email must be unique")){
+          showAlert('alert-danger', 3000, '<strong>User already registered</strong>')
+          return
+        }
+      }
+      showAlert('alert-danger', 3000, '<strong>'+errorThrown+'</strong>')
+      
+      
     })
 }
-
 
 
 /* Local storage */

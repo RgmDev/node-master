@@ -1,5 +1,5 @@
 const express = require('express')
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const path = require('path')
 const mustacheExpress = require('mustache-express')
 
@@ -8,8 +8,8 @@ const sequelize = require('./app/config/db')
 const app = express()
 const port = 3000
 
-app.use(express.urlencoded({extended: false}))
-app.use(express.json())
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 app.engine('html', mustacheExpress())
 app.set('view engine', 'html')
@@ -49,16 +49,14 @@ app.get('/sandbox', (req, res) => {
   res.render('sandbox', {
   title: 'sandbox', 
   css: [
-    '/css/bootswatch.min.css',
-    'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css',
-    'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
+    'https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css',
+    'https://cdn.jsdelivr.net/npm/simplelightbox@2.7.0/dist/simple-lightbox.min.css',
     '/css/style.css'
   ],
   scripts: [
-    '/js/jquery.min.js', 
-    '/js/bootstrap.bundle.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.6.1/jquery.lettering.min.js', 
-    'https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js', 
+    'https://code.jquery.com/jquery-3.6.0.min.js', 
+    'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js',
+    'https://cdn.jsdelivr.net/npm/simplelightbox@2.7.0/dist/simple-lightbox.min.js',
     '/js/sandbox.js', 
     '/js/app.js' 
   ]

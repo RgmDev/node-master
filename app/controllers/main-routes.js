@@ -19,7 +19,7 @@ function login(req, res){
       bodyClass: 'text-center',
       mainClass: 'form-signin',
       css: [ cdn.css.bootstrap.default, cdn.css.bootswatch.cyborg, '/css/signin.css', '/css/style.css' ],
-      scripts: [ cdn.js.jquery, 'js/users.js' ]
+      scripts: [ cdn.js.jquery, 'js/alerts.js', 'js/users.js' ]
     } 
   )
 }
@@ -31,7 +31,7 @@ function register(req, res){
       bodyClass: 'text-center',
       mainClass: 'container',
       css: [ cdn.css.bootstrap.default, cdn.css.bootswatch.cyborg, '/css/signin.css', '/css/style.css' ],
-      scripts: [ cdn.js.jquery, 'js/users.js' ]
+      scripts: [ cdn.js.jquery, 'js/alerts.js', 'js/users.js' ]
     } 
   )
 }

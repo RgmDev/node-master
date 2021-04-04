@@ -89,14 +89,13 @@ function login(req, res){
       if(user){
         bcrypt.compare(req.body.password, user.password, (err, check) => {
           if(check){
-
-            res.status(200).send({ token: jwt.createToken(user), user: { id: user.id, email: user.email, name: user.name, surname: user.surname, role: user.role, image: user.image } })
+            res.json({ token: jwt.createToken(user), user: { id: user.id, email: user.email, name: user.name, surname: user.surname, role: user.role, image: user.image } })
           }else{
-            res.send({error: true, message: 'Unauthorized'})
+            res.status(401).send({error: true, message: 'Unauthorized'})
           }
         })
       }else{
-        res.send({error: true, message: 'Unauthorized'})
+        res.status(401).send({error: true, message: 'Unauthorized'})
       }
     }).catch(err => {
       res.status(400).send({error: true, message: 'Bad Request', data: err.errors})
