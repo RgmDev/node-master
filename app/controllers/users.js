@@ -2,8 +2,6 @@ require('dotenv').config()
 const bcrypt = require('bcrypt-nodejs')
 const moment = require('moment')
 const path = require('path')
-// https://stackabuse.com/handling-file-uploads-in-node-js-with-expres-and-multer/
-// https://medium.com/@SigniorGratiano/image-uploads-with-multer-f306469ef2
 const multer  = require('multer')
 
 const mailer = require('../config/mail')
@@ -42,7 +40,7 @@ function create(req, res){
     bcrypt.hash(user.password, null, null, (err, hash) => {
       user.password = hash
       User.create(user).then((user) => {
-        let mailData = {email: user.email, password: pass, timestamp: new Date().toLocaleString('es')}
+        let mailData = {email: user.email, password: pass, timestamp: moment().format('DD/MM/YYYY hh:mm:ss')}
         mailer.useTemplate(process.env.ADMIN_MAIL, 'New user account', mailData, 'newUser')
         res.json(user)
       }).catch(err => {
@@ -142,7 +140,7 @@ function uploadAvatar(req, res){
       cb(null, path.join(__dirname, '../assets/img/profile/'))
     },
     filename: function (req, file, cb) {
-      cb(null, Date.now()+'_'+Math.floor(Math.random() * 10000)+path.extname(file.originalname))
+      cb(null, moment().unix()+'_'+Math.floor(Math.random() * 10000)+path.extname(file.originalname))
     }
   })
   var upload = multer({ storage: storage }).single('avatar')

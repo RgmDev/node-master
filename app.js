@@ -2,8 +2,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
 const mustacheExpress = require('mustache-express')
+const morgan = require('morgan')
+const fs = require('fs')
+const moment = require('moment')
 
-const sequelize = require('./app/config/db')
+const sequelize = require(path.join(__dirname, '/app/config/db'))
 
 const app = express()
 const port = 3000
@@ -15,6 +18,11 @@ app.engine('html', mustacheExpress())
 app.set('view engine', 'html')
 app.set('views', path.join(__dirname, '/app/views'))
 app.set('partials', path.join(__dirname, '/app/views/partials'))
+
+app.use(morgan('[:date[clf]] :method ":url" :status', {
+  stream: fs.createWriteStream(path.join(__dirname, 'app/log/access_'+moment().format('YYYYMMDD')+'.log'), { flags: 'a' })
+}))
+app.use(morgan('dev'))
 
 /*
 app.use((req, res, next) => {
@@ -30,8 +38,6 @@ app.use('/css', express.static(path.join(__dirname, 'app/assets/css')))
 app.use('/js', express.static(path.join(__dirname, 'app/assets/js')))
 app.use('/img', express.static(path.join(__dirname, 'app/assets/img')))
 
-let md_auth = require(path.join(__dirname, 'app/middleware/authenticate'))
-
 const mainRoutes = require(path.join(__dirname, 'app/routes/main-routes'))
 app.use(mainRoutes)
 
@@ -40,8 +46,6 @@ app.use('/app', appRoutes)
 
 const usersRoutes = require(path.join(__dirname, 'app/routes/users'))
 app.use('/api', usersRoutes)
-
-
 
 
 

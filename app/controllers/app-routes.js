@@ -23,6 +23,12 @@ function home(req, res){
       websiteLink : 'https://expressjs.com/' 
     },{
       style: 'bg-danger',
+      command : 'npm i mustache',
+      title : 'mustache',
+      description: 'mustache.js is a zero-dependency implementation of the mustache template system in JavaScript.',
+      npmLink: 'https://www.npmjs.com/package/mustache'
+    },{
+      style: 'bg-danger',
       command : 'npm i mustache-express',
       title : 'mustache-express',
       description: 'Mustache Express lets you use Mustache and Express together, including auto-loading partials.',
@@ -75,13 +81,27 @@ function home(req, res){
       command : 'npm i moment',
       title : 'moment',
       description: 'A JavaScript date library for parsing, validating, manipulating, and formatting dates.',
-      npmLink: 'https://www.npmjs.com/package/moment'
+      npmLink: 'https://www.npmjs.com/package/moment',
+      websiteLink: 'https://momentjs.com/'
     },{
       style: 'bg-warning',
       command : 'npm i path',
       title : 'path',
       description: 'The path module provides utilities for working with file and directory paths.',
       npmLink: 'https://www.npmjs.com/package/path'
+    },{
+      style: 'bg-secondary',
+      command : 'npm i morgan',
+      title : 'morgan',
+      description: 'HTTP request logger middleware for node.js',
+      npmLink: 'https://www.npmjs.com/package/morgan'
+    },{
+      style: 'bg-success',
+      command : 'npm i nodemailer',
+      title : 'nodemailer',
+      description: 'Nodemailer is a module for Node.js applications to allow easy as cake email sending 🍰',
+      npmLink: 'https://www.npmjs.com/package/nodemailer',
+      websiteLink: 'https://nodemailer.com/about/'
     }]
   })
 }
