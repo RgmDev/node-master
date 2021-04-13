@@ -13,7 +13,7 @@ function login(){
     "data" : data
   };
   $.ajax(settings)
-    .done(function (response) { 
+    .done(function (response) {
       saveToken(response.token)
       location.href = '/app/home'
     })

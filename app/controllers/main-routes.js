@@ -1,3 +1,5 @@
+"use strict"
+
 const cdn = require('../config/cdn')
 
 function landing(req, res){

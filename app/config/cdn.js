@@ -1,3 +1,5 @@
+"use strict"
+
 const cdn = {
   css: {
     bootstrap:{

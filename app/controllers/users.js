@@ -1,4 +1,5 @@
-require('dotenv').config()
+"use strict"
+
 const bcrypt = require('bcrypt-nodejs')
 const moment = require('moment')
 const path = require('path')
@@ -6,7 +7,9 @@ const multer  = require('multer')
 
 const mailer = require('../config/mail')
 const jwt = require('../config/jwt')
-const User = require('../models/user')
+
+const models = require('../models')
+const User = models.User;
 
 function getAll(req, res){
   try{
@@ -112,7 +115,7 @@ function checkToken(req, res){
     if(!req.headers.authorization){
       return res.status(403).send({error: true, message: 'Authorization header not found'})
     }
-    payload = jwt.decodeToken(req.headers.authorization)
+    var payload = jwt.decodeToken(req.headers.authorization)
     if(payload.exp <= moment().unix()){
       return res.status(401).send({error: true, message: 'Expired token'})
     }
@@ -129,6 +132,7 @@ function checkToken(req, res){
       }
     })
   }catch(err){
+    console.log(err)
     res.status(500).send({error: true, message: 'Interval Server Error'})
   }
   

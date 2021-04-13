@@ -1,3 +1,5 @@
+"use strict"
+
 const express = require('express')
 const mainRoutesController = require('../controllers/main-routes')
 const usersController = require('../controllers/users')

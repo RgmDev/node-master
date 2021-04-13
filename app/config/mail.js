@@ -1,3 +1,5 @@
+"use strict"
+
 require('dotenv').config()
 const nodemailer = require("nodemailer")
 const Mustache = require('mustache')
@@ -30,7 +32,7 @@ async function sendmail(to, subject, body){
 function useTemplate(to, subject, obj, template){
   fs.readFile(path.join(__dirname, '../views/email/'+template+'.html'), function (err, data) {
     if (err) throw err
-    output = Mustache.render(data.toString(), obj)
+    let output = Mustache.render(data.toString(), obj)
     sendmail(to, subject, output).catch(console.log('send'))
   })
 }

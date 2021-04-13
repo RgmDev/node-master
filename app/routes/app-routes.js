@@ -1,3 +1,5 @@
+"use strict"
+
 const express = require('express')
 const appRoutesController = require('../controllers/app-routes')
 

@@ -24,7 +24,6 @@ function checkToken(){
     .fail( function(jqXHR, textStatus, errorThrown){
       location.href = "/login"
     })
-
 }
 
 function loadUserInfo(user){

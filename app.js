@@ -1,3 +1,6 @@
+"use strict"
+
+require('dotenv').config(); 
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
@@ -6,7 +9,7 @@ const morgan = require('morgan')
 const fs = require('fs')
 const moment = require('moment')
 
-const sequelize = require(path.join(__dirname, '/app/config/db'))
+// const sequelize = require(path.join(__dirname, '/app/config/db'))
 
 const app = express()
 const port = 3000
@@ -47,6 +50,8 @@ app.use('/api', usersRoutes)
 
 app.listen(port, () => {
   console.log('Example app listening at http://localhost:'+port)
+
+  /*
   sequelize.authenticate().then(() =>{
     console.log('Connected to database successfully')
   }).catch(()=>{
@@ -57,5 +62,6 @@ app.listen(port, () => {
   }).catch(()=>{
     console.log('Failed to sync to database')
   })
+  */
 
 })
