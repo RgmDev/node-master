@@ -1,6 +1,6 @@
 "use strict"
 
-const bcrypt = require('bcrypt-nodejs')
+const bcrypt = require('bcrypt')
 const moment = require('moment')
 const path = require('path')
 const multer  = require('multer')
@@ -40,7 +40,7 @@ function create(req, res){
   try{
     let user = req.body
     let pass = user.password
-    bcrypt.hash(user.password, null, null, (err, hash) => {
+    bcrypt.hash(user.password, 10, (err, hash) => {
       user.password = hash
       User.create(user).then((user) => {
         let mailData = {email: user.email, password: pass, timestamp: moment().format('DD/MM/YYYY HH:mm:ss')}
