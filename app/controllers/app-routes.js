@@ -57,7 +57,7 @@ function home(req, res){
     },{
       style: 'bg-light',
       command : 'npm i bcrypt',
-      title : 'bcrypt-nodejs',
+      title : 'bcrypt',
       description: 'The bcrypt library on NPM makes it really easy to hash and compare passwords in Nodejs.',
       npmLink: 'https://www.npmjs.com/package/bcrypt'
     },{
